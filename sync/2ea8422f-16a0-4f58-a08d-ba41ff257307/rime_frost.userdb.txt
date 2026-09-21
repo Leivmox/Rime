@@ -1,0 +1,312 @@
+# Rime user dictionary
+#@/db_name	rime_frost
+#@/db_type	userdb
+#@/rime_version	1.13.1
+#@/tick	769
+#@/user_id	2ea8422f-16a0-4f58-a08d-ba41ff257307
+ai 	哎	c=1 d=0.186374 t=769
+ba 	吧	c=2 d=1.41979 t=769
+ba 	把	c=1 d=0.162026 t=769
+bai lu 	白露	c=1 d=0.156453 t=769
+bai shuang 	白霜	c=8 d=3.02634 t=769
+bang wo 	帮我	c=5 d=1.48274 t=769
+bang wo kan kan 	帮我看看	c=2 d=0.171919 t=769
+bao 	爆	c=1 d=0.0800583 t=769
+bao chi 	保持	c=1 d=0.0497871 t=769
+bao cun 	保存	c=3 d=1.07507 t=769
+bao kuo 	包括	c=1 d=0.32628 t=769
+bao zheng 	保证	c=1 d=0.0488012 t=769
+bei 	被	c=2 d=0.312358 t=769
+bei fen 	备份	c=3 d=1.17148 t=769
+bi ji ben 	笔记本	c=1 d=0.733447 t=769
+bi jiao 	比较	c=1 d=0.427415 t=769
+bi ru 	比如	c=3 d=0.638637 t=769
+bian hua 	变化	c=1 d=0.722527 t=769
+bian ju 	边距	c=1 d=0.0441572 t=769
+biao dian fu hao 	标点符号	c=1 d=0.108609 t=769
+bu 	不	c=4 d=0.795744 t=769
+bu hui 	不会	c=1 d=0.818731 t=769
+bu neng 	不能	c=1 d=0.0254765 t=769
+bu shi 	不是	c=4 d=0.579153 t=769
+bu tai hao 	不太好	c=1 d=0.0845849 t=769
+bu tong 	不同	c=1 d=0.748264 t=769
+bu xu yao 	不需要	c=2 d=1.42907 t=769
+bu yao 	不要	c=2 d=0.162906 t=769
+bu yi yang 	不一样	c=1 d=0.790571 t=769
+bu yong 	不用	c=1 d=0.537944 t=769
+cang ku 	仓库	c=1 d=0.644036 t=769
+cao zuo 	操作	c=1 d=0.0934807 t=769
+cha yi xia 	查一下	c=1 d=0.0278757 t=769
+chang chang 	尝尝	c=1 d=0.082085 t=769
+cheng gong 	成功	c=1 d=0.0422141 t=769
+chong dian 	充电	c=1 d=0.159614 t=769
+chong tu 	冲突	c=1 d=0.798516 t=769
+chong xin 	重新	c=1 d=0.941765 t=769
+chong zhuang 	重装	c=1 d=0.621885 t=769
+chu le 	除了	c=1 d=0.71177 t=769
+chuan shu fang shi 	传输方式	c=1 d=0.276651 t=769
+chuang jian 	创建	c=1 d=0.247833 t=769
+ci 	词	c=5 d=0.993829 t=769
+ci ku 	词库	c=9 d=1.91223 t=769
+cong 	从	c=1 d=0.900325 t=769
+cun 	存	c=1 d=0.690734 t=769
+cun chu 	存储	c=1 d=0.193013 t=769
+da fei yu 	大肥鱼	c=1 d=0.0776922 t=769
+da kai 	打开	c=1 d=0.0374406 t=769
+da tou 	大头	c=1 d=0.19398 t=769
+da xiao 	大小	c=1 d=0.0430669 t=769
+dai 	带	c=1 d=0.341298 t=769
+dan du 	单独	c=2 d=0.114928 t=769
+dan shi 	但是	c=6 d=1.85077 t=769
+dan zi 	单字	c=1 d=0.324652 t=769
+dao 	到	c=3 d=0.999407 t=769
+dao ru 	导入	c=2 d=0.253227 t=769
+de 	的	c=51 d=17.5807 t=769
+deng xia 	等下	c=1 d=0.579842 t=769
+di tu 	地图	c=1 d=0.451581 t=769
+di zuo 	底座	c=1 d=0.161218 t=769
+dian nao 	电脑	c=1 d=0.15259 t=769
+die jia 	叠加	c=1 d=0.113608 t=769
+dong 	动	c=1 d=0.822835 t=769
+dong tai 	动态	c=1 d=0.718924 t=769
+dong xi 	东西	c=1 d=0.529935 t=769
+dou 	都	c=3 d=0.37172 t=769
+dou hao 	逗号	c=3 d=0.39493 t=769
+dou shi 	都是	c=5 d=0.746 t=769
+duan ju 	短距	c=1 d=0.279431 t=769
+dui hua 	对话	c=1 d=0.0902655 t=769
+duo 	多	c=1 d=0.213312 t=769
+er bu shi 	而不是	c=1 d=0.0944202 t=769
+er qie 	而且	c=5 d=0.167843 t=769
+fa xian 	发现	c=2 d=0.729375 t=769
+fan ti 	繁体	c=2 d=0.524485 t=769
+fan ye 	翻页	c=1 d=0.0258615 t=769
+fu fu 	富富	c=1 d=0.268474 t=769
+fu gai 	覆盖	c=2 d=1.40261 t=769
+fu hao 	符号	c=9 d=0.451711 t=769
+fu wu qi 	服务器	c=1 d=0.436049 t=769
+gai 	改	c=7 d=0.761883 t=769
+gai 	该	c=1 d=0.227638 t=769
+gai cheng 	改成	c=1 d=0.0265162 t=769
+gai yi xia 	改一下	c=1 d=0.701173 t=769
+gan 	干	c=1 d=0.112478 t=769
+gang gang 	刚刚	c=1 d=0.0735345 t=769
+gao su wo 	告诉我	c=4 d=0.566156 t=769
+ge 	个	c=1 d=0.0266491 t=769
+gei 	给	c=4 d=1.07708 t=769
+gen mu lu 	根目录	c=1 d=0.26054 t=769
+geng 	更	c=1 d=0.402524 t=769
+geng gai 	更改	c=4 d=0.339425 t=769
+geng hao 	更好	c=1 d=0.165299 t=769
+geng xin 	更新	c=2 d=1.75628 t=769
+gong neng 	功能	c=3 d=0.840461 t=769
+guan diao 	关掉	c=1 d=0.0468877 t=769
+guo lai 	过来	c=1 d=0.951229 t=769
+hai you 	还有	c=2 d=0.390521 t=769
+hai you shen me 	还有什么	c=1 d=0.366045 t=769
+hai you yi ge 	还有一个	c=1 d=0.10383 t=769
+hao 	号	c=1 d=0.137381 t=769
+hao 	好	c=1 d=0.185444 t=769
+hao bu hao 	好不好	c=3 d=0.128972 t=769
+hao dian 	耗电	c=1 d=0.404542 t=769
+hao xiang 	好像	c=1 d=0.036334 t=769
+he 	和	c=12 d=2.59406 t=769
+heng xiang 	横向	c=1 d=0.024972 t=769
+hou 	后	c=3 d=0.297964 t=769
+hou mian 	后面	c=1 d=0.0520787 t=769
+hou xuan 	候选	c=10 d=1.06321 t=769
+hou xuan ci 	候选词	c=2 d=0.0780714 t=769
+hou xuan kuang 	候选框	c=1 d=0.07502 t=769
+hua mian 	画面	c=1 d=0.114178 t=769
+huai 	淮	c=1 d=0.282239 t=769
+huan qi 	唤起	c=1 d=0.0746459 t=769
+hui 	会	c=6 d=2.80881 t=769
+hui 	毁	c=1 d=0.438235 t=769
+hui yuan 	会员	c=1 d=0.265803 t=769
+huo 	或	c=2 d=0.222053 t=769
+jian kong 	监控	c=1 d=0.16696 t=769
+jian shi 	监视	c=1 d=0.170333 t=769
+jian ti 	简体	c=1 d=0.0550232 t=769
+jie 	接	c=1 d=0.121846 t=769
+jie ya 	解压	c=1 d=0.932394 t=769
+jin 	进	c=5 d=0.472551 t=769
+jin du 	进度	c=1 d=0.755784 t=769
+jin ru 	进入	c=1 d=0.110251 t=769
+jing ran 	竟然	c=1 d=0.263158 t=769
+jiu 	就	c=2 d=0.859787 t=769
+jiu ci 	旧词	c=1 d=0.210136 t=769
+jiu shi 	就是	c=2 d=0.169767 t=769
+jiu suan 	就算	c=2 d=1.4667 t=769
+ju hao 	句号	c=3 d=0.398899 t=769
+jue de 	觉得	c=1 d=0.0689068 t=769
+kai 	开	c=1 d=0.302704 t=769
+kai zhe 	开着	c=1 d=0.431711 t=769
+kan diao 	砍掉	c=1 d=0.410656 t=769
+kan kan 	看看	c=2 d=0.447717 t=769
+ke neng 	可能	c=1 d=0.14808 t=769
+ke yi 	可以	c=4 d=1.27862 t=769
+kuai jie jian 	快捷键	c=1 d=0.474734 t=769
+kuan 	款	c=1 d=0.0439369 t=769
+lai 	来	c=1 d=0.380983 t=769
+lan de dong 	懒得动	c=1 d=0.194952 t=769
+le 	了	c=25 d=6.02635 t=769
+leng jing men 	棱镜门	c=1 d=0.169483 t=769
+li qi lai 	立起来	c=1 d=0.158817 t=769
+lian wang 	联网	c=1 d=0.418952 t=769
+lian xiang 	联想	c=4 d=0.628832 t=769
+liang tai dian nao 	两台电脑	c=1 d=0.737123 t=769
+ling wai 	另外	c=10 d=3.14271 t=769
+ling yi ge 	另一个	c=1 d=0.447088 t=769
+lou dong 	漏洞	c=1 d=0.0804596 t=769
+ma 	吗	c=7 d=1.87575 t=769
+mai le 	买了	c=1 d=0.264477 t=769
+mei wen ti 	没问题	c=1 d=0.141564 t=769
+mei you 	没有	c=10 d=1.09317 t=769
+ming zi 	名字	c=1 d=0.242926 t=769
+mo hu 	模糊	c=2 d=0.0656078 t=769
+mo hu yin 	模糊音	c=1 d=0.0365162 t=769
+mo ren 	默认	c=1 d=0.0581343 t=769
+na 	那	c=1 d=0.1764 t=769
+na ge 	哪个	c=1 d=0.423162 t=769
+na ge 	那个	c=3 d=0.768668 t=769
+na li 	哪里	c=1 d=0.224249 t=769
+na xie 	哪些	c=1 d=0.102284 t=769
+na xie 	那些	c=4 d=2.2946 t=769
+nao 	恼	c=1 d=0.453845 t=769
+ne 	呢	c=1 d=0.694197 t=769
+nei rong 	内容	c=2 d=0.939556 t=769
+neng 	能	c=3 d=0.308693 t=769
+ni 	你	c=2 d=0.333208 t=769
+pai chu 	排除	c=1 d=0.559898 t=769
+pan 	盘	c=1 d=0.278037 t=769
+pei zhi 	配置	c=1 d=0.100259 t=769
+pei zhi wen jian 	配置文件	c=3 d=1.92233 t=769
+pin fan 	频繁	c=1 d=0.865022 t=769
+po li 	破例	c=1 d=0.0765355 t=769
+qi ta 	其他	c=4 d=0.829163 t=769
+qi ta di fang 	其他地方	c=1 d=0.092089 t=769
+qie huan 	切换	c=4 d=0.220719 t=769
+qu 	去	c=4 d=0.824987 t=769
+qu xiao 	取消	c=1 d=0.0558548 t=769
+quan bu 	全部	c=2 d=1.24533 t=769
+quan pin 	全拼	c=1 d=0.173774 t=769
+quan zhong 	权重	c=2 d=0.985921 t=769
+ran hou 	然后	c=1 d=0.121238 t=769
+rang 	让	c=2 d=0.294823 t=769
+ren 	人	c=1 d=0.245367 t=769
+ren he 	任何	c=2 d=0.260526 t=769
+reng ran 	仍然	c=2 d=0.143372 t=769
+ru guo 	如果	c=5 d=2.5089 t=769
+ru he 	如何	c=1 d=0.0490458 t=769
+shai xuan 	筛选	c=1 d=0.382893 t=769
+shan chu 	删除	c=2 d=0.370963 t=769
+shang 	上	c=2 d=1.43598 t=769
+shang chuan 	上传	c=6 d=3.90575 t=769
+she zhi 	设置	c=1 d=0.0728029 t=769
+shen me 	什么	c=3 d=0.533746 t=769
+shen zhi 	甚至	c=2 d=0.0691404 t=769
+sheng huo bi xu pin 	生活必需品	c=1 d=0.154896 t=769
+shi 	是	c=9 d=1.36695 t=769
+shi bu shi 	是不是	c=6 d=1.05 t=769
+shi hou 	时候	c=1 d=0.138761 t=769
+shi shen me 	是什么	c=1 d=0.392586 t=769
+shou ji 	手机	c=1 d=0.162838 t=769
+shu ru 	输入	c=8 d=0.89037 t=769
+shu ru fa 	输入法	c=11 d=0.998097 t=769
+shu zi 	数字	c=3 d=0.372435 t=769
+shuo 	说	c=1 d=0.307279 t=769
+si de 	死的	c=1 d=0.814647 t=769
+sou gou 	搜狗	c=3 d=0.554552 t=769
+sou gou shu ru fa 	搜狗输入法	c=1 d=0.398519 t=769
+sui ran 	虽然	c=1 d=0.0349094 t=769
+suo you 	所有	c=2 d=0.352696 t=769
+ta 	它	c=1 d=0.0692522 t=769
+tai chou 	太丑	c=1 d=0.0699482 t=769
+te bie 	特别	c=1 d=0.0291588 t=769
+tian tian 	天天	c=1 d=0.079659 t=769
+tiao jiao 	调教	c=2 d=0.440617 t=769
+tiao zheng 	调整	c=1 d=0.0434998 t=769
+tong guo 	通过	c=1 d=0.0256042 t=769
+tong yang 	同样	c=1 d=0.650509 t=769
+tu biao 	图标	c=1 d=0.0668703 t=769
+wei 	为	c=1 d=0.0248475 t=769
+wei le 	为了	c=1 d=0.164474 t=769
+wei shen me 	为什么	c=5 d=0.817883 t=769
+wen jian 	文件	c=3 d=0.44935 t=769
+wen jian jia 	文件夹	c=1 d=0.985112 t=769
+wen ti 	问题	c=3 d=0.340256 t=769
+wo 	我	c=41 d=11.132 t=769
+wo de 	我的	c=2 d=0.611466 t=769
+wo you yi ge 	我有一个	c=1 d=0.729789 t=769
+wo zai xiang 	我在想	c=1 d=0.157237 t=769
+wo zi ji 	我自己	c=1 d=0.680451 t=769
+wu jun you 	伍钧友	c=3 d=1.48977 t=769
+wu xian 	无线	c=1 d=0.275271 t=769
+xia 	下	c=4 d=0.166407 t=769
+xia ci 	下次	c=1 d=0.615697 t=769
+xia zai 	下载	c=3 d=2.2133 t=769
+xian shi 	显示	c=1 d=0.0645703 t=769
+xian zai 	现在	c=6 d=0.353891 t=769
+xiang 	想	c=5 d=1.77382 t=769
+xiao xi 	消息	c=1 d=0.0448245 t=769
+xie 	写	c=2 d=0.840945 t=769
+xin 	新	c=2 d=0.358837 t=769
+xin ci 	新词	c=2 d=1.09934 t=769
+xin jian 	新建	c=1 d=0.285076 t=769
+xing bu xing 	行不行	c=2 d=0.0700522 t=769
+xing hao 	星号	c=3 d=0.707695 t=769
+xiu gai 	修改	c=1 d=0.0837432 t=769
+xu yao 	需要	c=6 d=2.98896 t=769
+ya suo bao 	压缩包	c=1 d=0.927743 t=769
+yao 	要	c=7 d=1.69897 t=769
+yao dian 	要点	c=1 d=0.0301974 t=769
+ye 	也	c=5 d=1.51159 t=769
+yi dian 	一点	c=1 d=0.40657 t=769
+yi ge 	一个	c=3 d=0.688533 t=769
+yi jing 	已经	c=1 d=0.484325 t=769
+yi xia 	一下	c=1 d=0.467666 t=769
+yi xie 	一些	c=3 d=0.963586 t=769
+yi zhi 	一直	c=2 d=0.107095 t=769
+yin 	音	c=2 d=0.0659366 t=769
+yin wei 	因为	c=2 d=0.640745 t=769
+yin xu 	音序	c=2 d=0.418246 t=769
+ying gai 	应该	c=4 d=2.03144 t=769
+ying wen 	英文	c=2 d=0.0557384 t=769
+yong 	用	c=6 d=1.59127 t=769
+yong hu 	用户	c=2 d=0.427036 t=769
+you 	有	c=3 d=0.956448 t=769
+you mei you 	有没有	c=2 d=0.46694 t=769
+you shen me 	有什么	c=1 d=0.0290133 t=769
+you xie shi hou 	有些时候	c=1 d=0.0513033 t=769
+you yi ge 	有一个	c=1 d=0.0523397 t=769
+zai 	再	c=2 d=0.532812 t=769
+zai 	在	c=3 d=0.140895 t=769
+zen me 	怎么	c=10 d=0.597026 t=769
+zen me gai 	怎么改	c=1 d=0.0273237 t=769
+zen me jie jue 	怎么解决	c=1 d=0.151072 t=769
+zen me jie shi 	怎么解释	c=1 d=0.348192 t=769
+zen me yang 	怎么样	c=1 d=0.0214936 t=769
+zen me yong 	怎么用	c=2 d=0.424303 t=769
+zhang 	张	c=1 d=0.280832 t=769
+zhe ge 	这个	c=9 d=2.06817 t=769
+zhe me 	这么	c=1 d=0.0880368 t=769
+zhe me duo 	这么多	c=1 d=0.527292 t=769
+zhe xie 	这些	c=3 d=0.551448 t=769
+zhe yang 	这样	c=1 d=0.04573 t=769
+zhe zhong 	这种	c=2 d=0.196606 t=769
+zhe zhong dong xi 	这种东西	c=1 d=0.153355 t=769
+zheng zai 	正在	c=1 d=0.351692 t=769
+zhi 	只	c=3 d=0.909551 t=769
+zhi dao 	知道	c=2 d=0.221942 t=769
+zhi jie 	直接	c=3 d=0.850023 t=769
+zhi lei 	之类	c=2 d=1.82532 t=769
+zhi qian 	之前	c=2 d=0.149272 t=769
+zhong 	中	c=1 d=0.0655462 t=769
+zhong wen 	中文	c=5 d=0.197776 t=769
+zhong ying wen 	中英文	c=3 d=0.16735 t=769
+zhong zhou yun 	中州韵	c=1 d=0.0824965 t=769
+zhuan fa 	转发	c=1 d=0.044601 t=769
+zi ji 	自己	c=7 d=2.34752 t=769
+zi ti 	字体	c=1 d=0.0428521 t=769
+zui hou 	最后	c=1 d=0.250324 t=769
+zui kuai 	最快	c=2 d=0.542352 t=769

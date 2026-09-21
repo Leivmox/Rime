@@ -1,0 +1,60 @@
+patch:
+  # 中英标点：不再用 ascii_punct（它会让 / 直接上屏、符号全废），
+  # 改由 default.yaml 的 punctuator/half_shape 表控制：所有符号英文半角直出、不进候选，
+  # 只有 '/' 保留候选列表，用来触发 /shang /xia /szq /budengyu 等符号。
+  # 这里整表覆盖（与原 schema 一致，避免依赖列表索引）
+  switches:
+    - name: ascii_mode
+      reset: 0                 # 载入方案时强制回到「中文」，保证永远中文
+      states: [ 中文, 英文 ]
+    - name: traditionalization
+      states: [ 简体, 繁体 ]
+    - name: full_shape
+      states: [ 半角, 全角 ]
+    - name: ascii_punct
+      reset: 0
+      states: [ 。，, ．， ]
+    - name: emoji
+      states: [ 💀, 😄 ]
+    - name: chinese_english
+      states: [ 翻译关, 翻译开 ]
+    - name: mars
+      reset: 0
+      states: [ 地, 煋 ]
+    - name: chaifen
+      states: [ 拆分不提示, 拆分提示 ]
+    - name: pin_cand
+      states: [ 固顶关, 固顶开 ]
+
+  # 关掉 librime 的「数字分隔符」功能（引擎内置默认值是 , . : ' 这四个符号）。
+  # 它的作用是识别 3.14 / 12:30 / 1,000 / 1'000 这类写法：只要上一个上屏内容
+  # 是数字，紧跟其后的这四个符号就不按标点表直接上屏，而是被塞进一个
+  # punct_number 候选段里，于是候选框就弹出来了
+  # （再按一次同一个符号才会还原成普通标点）。
+  # 设成空字符串 = 彻底关闭该功能，此后任何标点都只按 punctuator/half_shape
+  # 表处理：单映射直接上屏、不进候选；'/' 仍保留候选列表。
+  punctuator/digit_separators: ""
+
+  # custom_phrase（custom_phrase.txt）前缀补全：编码打一半也出提示，
+  # 例如输入 zy 就能看到「张钰淮」。
+  # 副作用：编码前缀越短，提示出来的人名越多（打 z 会把所有 z 开头的都列出来），
+  # 嫌吵就把编码都写成完整拼音。
+  custom_phrase/enable_completion: true
+
+  # 模糊音规则
+  # 用 /+ 追加到 algebra 列表末尾（/+ 会把下面每一项作为独立元素插入）
+  # 不要用 @before 0：librime 会把整个列表当成一个嵌套元素插入，生成非法条目，导致整个
+  # algebra 失效（编译出的 prism.bin 只有几 KB），表现为模糊音和超级简拼全部失效
+  speller/algebra/+:
+    - derive/^([zcs])h/$1/           # zh ch sh → z c s
+    - derive/^([zcs])([^h])/$1h$2/   # z c s → zh ch sh
+    - derive/^l/n/                   # n/l 单向
+    - derive/^n/l/
+    - derive/ang$/an/                # 前后鼻音
+    - derive/an$/ang/
+    - derive/eng$/en/
+    - derive/en$/eng/
+    - derive/in$/ing/
+    - derive/ing$/in/
+    # - derive/^f/h/                   # 必须加 ^，否则会替换掉音节中间的 h（如 zhi → zfi）
+    # - derive/^h/f/

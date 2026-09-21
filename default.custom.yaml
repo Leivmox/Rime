@@ -1,0 +1,110 @@
+customization:
+  distribution_code_name: Weasel
+  distribution_version: 0.17.4
+  generator: "Rime::SwitcherSettings"
+  modified_time: "Mon Sep 21 20:05:08 2026"
+  rime_version: 1.13.1
+patch:
+  schema_list:
+    - {schema: rime_frost}
+  menu/page_size: 5
+
+  # 中英切换：Shift / CapsLock 一律不再切换中英。
+  # noop = 什么都不做：Shift 恢复成普通 Shift，CapsLock 恢复成普通大写锁定。
+  # 配合 rime_frost.custom.yaml 里 ascii_mode 的 reset: 0，保证始终停在中文。
+  ascii_composer:
+    good_old_caps_lock: true
+    switch_key:
+      Caps_Lock: noop
+      Shift_L: noop
+      Shift_R: noop
+      Control_L: noop
+      Control_R: noop
+
+  # 中文模式下符号也输出英文半角：单映射 = 直接上屏、不进候选
+  # （默认表里逗号句号问号等是中文标点，这里逐项换成 ASCII）
+  # '/' 保持原样的候选列表，作为 /shang /xia /szq /budengyu 等符号的触发入口
+  "punctuator/half_shape":
+    ',' : ','
+    '.' : '.'
+    '<' : '<'
+    '>' : '>'
+    '/' : [ /, ÷ ]
+    '?' : '?'
+    ';' : ';'
+    ':' : ':'
+    '''' : "'"
+    '"' : '"'
+    '\' : '\'
+    '|' : '|'
+    '`' : '`'
+    '~' : '~'
+    '!' : '!'
+    '@' : '@'
+    '#' : '#'
+    '%' : '%'
+    '$' : '$'
+    '^' : '^'
+    '&' : '&'
+    '*' : '*'
+    '(' : '('
+    ')' : ')'
+    '-' : '-'
+    '_' : '_'
+    '+' : '+'
+    '=' : '='
+    '[' : '['
+    ']' : ']'
+    '{' : '{'
+    '}' : '}'
+
+  # 整表覆盖：去掉 ascii_mode —— 它要配合 switches 里的 reset: 0 保证「永远中文」，
+  # 而带 reset 的开关不能被「开关记忆」覆盖，所以不能出现在这里
+  switcher/save_options:
+    - full_shape
+    - traditionalization
+    - chinese_english
+    - emoji
+    - chaifen
+    - mars
+    - pin_cand
+
+  key_binder/select_first_character: "Control+bracketleft"    # 腾出 [
+  key_binder/select_last_character: "Control+bracketright"    # 腾出 ]
+
+  # 快捷键整表覆盖（内容 = default.yaml 原列表，只动了繁体快捷键那两条）。
+  # 为什么整表覆盖：key_binder/bindings 是个列表，补丁只能往列表里「加」，没法删掉
+  # 列表里的某一项；要换掉已有的按键就只能整表重写。
+  # 繁体切换：改用 Ctrl+Shift+F，原来的 Ctrl+Shift+4 / Ctrl+Shift+$ 已去掉。
+  key_binder/bindings:
+    # Tab / Shift+Tab 移动光标到下 / 上一个拼音
+    - { when: composing, accept: Shift+Tab, send: Shift+Left }
+    - { when: composing, accept: Tab, send: Shift+Right }
+    # Alt + ←/→ 移动光标到下 / 上一个拼音
+    - { when: composing, accept: Alt+Left, send: Shift+Left }
+    - { when: composing, accept: Alt+Right, send: Shift+Right }
+    # 翻页 - =
+    - { when: has_menu, accept: minus, send: Page_Up }
+    - { when: has_menu, accept: equal, send: Page_Down }
+    # 中英标点（提醒：half_shape 里标点已全是英文半角，这两条现在按了也看不出区别）
+    - { when: always, accept: "Control+Shift+3", toggle: ascii_punct }
+    - { when: always, accept: "Control+Shift+numbersign", toggle: ascii_punct }
+    # 简繁切换
+    - { when: always, accept: "Control+Shift+F", toggle: traditionalization }
+    # Control+k 删除光标后的内容
+    - { when: composing, accept: Control+k, send: Shift+Delete }
+    # 小键盘 0~9 . 映射到主键盘，方便输入 R1234.56 这类金额大写
+    - { when: composing, accept: KP_0, send: 0 }
+    - { when: composing, accept: KP_1, send: 1 }
+    - { when: composing, accept: KP_2, send: 2 }
+    - { when: composing, accept: KP_3, send: 3 }
+    - { when: composing, accept: KP_4, send: 4 }
+    - { when: composing, accept: KP_5, send: 5 }
+    - { when: composing, accept: KP_6, send: 6 }
+    - { when: composing, accept: KP_7, send: 7 }
+    - { when: composing, accept: KP_8, send: 8 }
+    - { when: composing, accept: KP_9, send: 9 }
+    - { when: composing, accept: KP_Decimal, send: period }
+    # 翻页 [ ]
+    - { when: paging, accept: bracketleft, send: Page_Up }
+    - { when: has_menu, accept: bracketright, send: Page_Down }

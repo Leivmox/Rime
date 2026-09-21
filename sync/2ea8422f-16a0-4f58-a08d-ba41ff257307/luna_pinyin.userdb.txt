@@ -1,0 +1,7 @@
+# Rime user dictionary
+#@/db_name	luna_pinyin
+#@/db_type	userdb
+#@/rime_version	1.13.1
+#@/tick	1
+#@/user_id	2ea8422f-16a0-4f58-a08d-ba41ff257307
+jia su 	加速	c=1 d=1 t=1

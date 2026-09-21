@@ -1,0 +1,15 @@
+customization:
+  distribution_code_name: Weasel
+  distribution_version: 0.17.4
+  generator: "Weasel::UIStyleSettings"
+  modified_time: "Mon Sep 21 20:01:08 2026"
+  rime_version: 1.13.1
+patch:
+  "style/font_point": 13
+  "style/color_scheme": steam
+  "style/horizontal": true
+  "style/layout/margin_x": 16
+  "style/layout/margin_y": 5 
+  "style/layout/spacing": 5
+  "style/layout/border_width": 1
+  # "style/layout/corner_radius":0
