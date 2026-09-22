@@ -8,7 +8,7 @@ patch:
   "style/font_point": 13
   "style/color_scheme": steam
   "style/horizontal": true
-  "style/layout/margin_x": 16
+  "style/layout/margin_x": 5
   "style/layout/margin_y": 5 
   "style/layout/spacing": 5
   "style/layout/border_width": 1
