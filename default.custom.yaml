@@ -7,6 +7,7 @@ customization:
 patch:
   schema_list:
     - {schema: rime_frost}
+    - { schema: rime_frost_wubi86 }
   menu/page_size: 5
 
   # 中英切换：Shift / CapsLock 一律不再切换中英。
@@ -23,20 +24,20 @@ patch:
 
   # 中文模式下符号也输出英文半角：单映射 = 直接上屏、不进候选
   # （默认表里逗号句号问号等是中文标点，这里逐项换成 ASCII）
-  # '/' 保持原样的候选列表，作为 /shang /xia /szq /budengyu 等符号的触发入口
+  # '/' 直接上屏（编程常用），符号查找改用 | 前缀（如 |jt 弹箭头）
   "punctuator/half_shape":
     ',' : ','
     '.' : '.'
     '<' : '<'
     '>' : '>'
-    '/' : [ /, ÷ ]
+    '/' : '/'
     '?' : '?'
     ';' : ';'
     ':' : ':'
     '''' : "'"
     '"' : '"'
     '\' : '\'
-    '|' : '|'
+    '|' : [ '|', ¦ ]
     '`' : '`'
     '~' : '~'
     '!' : '!'

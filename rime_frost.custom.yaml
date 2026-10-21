@@ -1,8 +1,11 @@
 patch:
   # 中英标点：不再用 ascii_punct（它会让 / 直接上屏、符号全废），
   # 改由 default.yaml 的 punctuator/half_shape 表控制：所有符号英文半角直出、不进候选，
-  # 只有 '/' 保留候选列表，用来触发 /shang /xia /szq /budengyu 等符号。
+  # '/' 直接上屏，符号查找改用 | 前缀（如 |jt |sx |szq 等）。
   # 这里整表覆盖（与原 schema 一致，避免依赖列表索引）
+  punctuator/symbols:
+    __include: symbols_custom:/symbols
+  recognizer/patterns/punct: '^\|([0-9]0?|[A-Za-z]+)$'
   switches:
     - name: ascii_mode
       reset: 0                 # 载入方案时强制回到「中文」，保证永远中文
@@ -48,8 +51,8 @@ patch:
   speller/algebra/+:
     - derive/^([zcs])h/$1/           # zh ch sh → z c s
     - derive/^([zcs])([^h])/$1h$2/   # z c s → zh ch sh
-    - derive/^l/n/                   # n/l 单向
-    - derive/^n/l/
+    # - derive/^l/n/                   # n/l 单向
+    # - derive/^n/l/
     - derive/ang$/an/                # 前后鼻音
     - derive/an$/ang/
     - derive/eng$/en/
@@ -58,3 +61,29 @@ patch:
     - derive/ing$/in/
     # - derive/^f/h/                   # 必须加 ^，否则会替换掉音节中间的 h（如 zhi → zfi）
     # - derive/^h/f/
+
+  # 取消「分号 = 选第 2 个候选」。
+  # 原实现：rime_frost.schema.yaml 的 key_binder/bindings 里有一条 {accept: semicolon, send: 2}。
+  # bindings 是列表，补丁只能往列表末尾追加、删不掉中间某一项，所以直接整表覆盖成空列表。
+  # 方案里除了这一条没有别的自定义 binding，清空是安全的；
+  # key_binder/import_preset: default 仍然生效，翻页、Tab 移动光标等默认按键不受影响。
+  key_binder/bindings:
+    - { when: always, accept: F14, select: rime_frost_wubi86 }  # 切到五笔
+
+  # ESC 一键完全清空输入（lua/custom_escape_clear.lua，个人脚本带 custom 前缀）。
+  # 现象：u 拆字反查等模式里按 ESC 只退到剩一个 u，要按多次才能退出。
+  # 根因：affix_segmentor 把反查输入切成「前缀段 + 编码段」两段，而 librime 的
+  # Escape（CancelComposition）是先 ClearPreviousSegment() 只清当前段、失败才整体
+  # Clear()，所以一次 ESC 只清掉编码段，前缀 u / z 留在输入里。
+  # 修复：把 custom_escape_clear 插到处理器链最前，按 ESC 时直接清空全部。
+  # 普通输入本来就是一整段、ESC 原本就是全清，行为不变。
+  engine/processors/@before 0: lua_processor@*custom_escape_clear
+
+  # 拆字反查：候选框输入串补回前缀 u（输入 uaotu 时只显示 aotu）。
+  # 根因：affix_segmentor 把「u + 编码」切成前缀段(phony) + 编码段，
+  # librime 的 GetPreedit 跳过 phony 段，输入串就丢了前缀。
+  # 反查翻译器拿到的是去掉前缀的编码，用 preedit_format 在编码开头
+  # 补回 u（xform/^/u/ 在行首插入 u），显示恢复成完整的 uaotu。
+  # 注意：若以后改 radical_lookup/prefix，这里要同步改。
+  radical_lookup/preedit_format:
+    - "xform/^/u/"

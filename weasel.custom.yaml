@@ -5,6 +5,10 @@ customization:
   modified_time: "Mon Sep 21 20:01:08 2026"
   rime_version: 1.13.1
 patch:
+  "app_options/Code.exe":
+    inline_preedit: true
+  "app_options/Code - Insiders.exe":
+    inline_preedit: true
   "style/font_point": 13
   "style/color_scheme": steam
   "style/horizontal": true

@@ -1,0 +1,36 @@
+patch:
+  # 在处理器链最前面插入键盘反向映射（Colemak-DH → QWERTY），
+  # 让五笔码表按 QWERTY 键位正确匹配。
+  # 必须排在 ascii_composer / recognizer / speller 之前，否则字母会被先消费。
+  engine/processors/@before 0: lua_processor@*keyboard_remap
+
+  # ESC 一键完全清空输入（lua/custom_escape_clear.lua，个人脚本带 custom 前缀）。
+  # z 临时拼音等 affix 反查模式里，ESC（librime 的 CancelComposition）一次只清
+  # 当前段（ClearPreviousSegment），前缀 z 会留在输入里，要按多次才能退出；
+  # 这里插到处理器链前面，按 ESC 时直接清空全部。
+  # 排在 keyboard_remap 之后（@before 1）：ESC 不是字母，两者互不影响。
+  engine/processors/@before 1: lua_processor@*custom_escape_clear
+
+  # 反查：候选框输入串补回前缀（z 临时拼音 → zhong、uU 拆字 → uUxxx）。
+  # 原理同拼音方案 rime_frost.custom.yaml：affix 前缀段是 phony、被
+  # librime 的 GetPreedit 跳过，输入串丢了前缀；反查翻译器拿到的是去掉
+  # 前缀的编码，用 preedit_format 在编码开头补回前缀。
+  # 注意：若以后改 pinyin_lookup/radical_lookup 的 prefix，这里要同步改。
+  pinyin_lookup/preedit_format:
+    - "xform/^/z/"
+  radical_lookup/preedit_format:
+    - "xform/^/uU/"
+
+  # 关掉数字分隔符：数字后紧跟的逗号/句号等不再被塞进候选段，而是直接上屏。
+  # 与拼音方案 rime_frost.custom.yaml 里的 punctuator/digit_separators: "" 一致。
+  punctuator/digit_separators: ""
+
+  # 符号查找：/ 前缀改为 | 前缀（与拼音方案一致）
+  punctuator/symbols:
+    __include: symbols_custom:/symbols
+  recognizer/patterns/punct: '^\|([0-9]0?|[A-Za-z]+)$'
+
+  # F14 切回白霜拼音（整表覆盖：保留原有分号选第2候选）
+  key_binder/bindings:
+    - { when: has_menu, accept: semicolon, send: 2 }
+    - { when: always, accept: F14, select: rime_frost }
