@@ -5,10 +5,15 @@ customization:
   modified_time: "Mon Sep 21 20:01:08 2026"
   rime_version: 1.13.1
 patch:
+  # 预编辑串（输入的拼音）始终显示在候选框内，不嵌入应用输入框
+  "style/inline_preedit": false
   "app_options/Code.exe":
-    inline_preedit: true
+    inline_preedit: false
   "app_options/Code - Insiders.exe":
-    inline_preedit: true
+    inline_preedit: false
+  # 覆盖上游 weasel.yaml 中 firefox.exe 的 inline_preedit: true
+  "app_options/firefox.exe":
+    inline_preedit: false
   "style/font_point": 13
   "style/color_scheme": steam
   "style/horizontal": true
