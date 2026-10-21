@@ -6,8 +6,9 @@
 --   simplifier@emoji 再按 opencc/emoji.txt 附加转换候选（「笑」→ 😄 😊）。
 --   本 filter 把该段残留的文字候选（「笑」）删掉，最终候选框只剩 😄 😊 这类纯符号。
 --
--- 判定规则：候选文本中任一字符落在 CJK（部首/CJK 标点/汉字/假名）、CJK 扩展区、
+-- 判定规则：候选文本中任一字符落在 CJK（部首/CJK 标点/汉字）、CJK 扩展区、
 -- 全角 ASCII 变体、ASCII 字母数字区 → 视为文字候选，整条丢弃；
+-- 例外：假名区（U+3040~30FF）放行，の 这类日文装饰字由 custom_v_symbols 词库产出；
 -- emoji 修饰符（U+FE0F 变体选择符、U+200D 零宽连接符、U+20E3 键帽）跳过不判，
 -- 否则 ⬆️（U+2B06 + U+FE0F）这类组合 emoji 会被误伤。
 
@@ -43,7 +44,9 @@ local function is_symbol_only(text)
     if cp == 0xFE0F or cp == 0xFE0E   -- emoji 变体选择符（⬆️ 末尾的 ️）
       or cp == 0x200D or cp == 0x20E3 then  -- 零宽连接符（👨‍👩‍👧）、键帽（🅰️）
       -- 修饰符：跳过，不算文字
-    elseif (cp >= 0x2E80 and cp <= 0x9FFF)  -- 部首、CJK 标点、汉字、假名
+    elseif (cp >= 0x3040 and cp <= 0x30FF) then
+      -- 假名（の 等）：放行，仅 custom_v_symbols 词库会产出，主词库无假名
+    elseif (cp >= 0x2E80 and cp <= 0x9FFF)  -- 部首、CJK 标点、汉字
       or cp >= 0x20000                        -- CJK 扩展 B 及以上
       or (cp >= 0xF900 and cp <= 0xFAFF)      -- CJK 兼容区
       or (cp >= 0xFF01 and cp <= 0xFF5E)      -- 全角 ASCII 变体
