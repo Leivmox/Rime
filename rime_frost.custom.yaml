@@ -1,11 +1,19 @@
 patch:
-  # 中英标点：不再用 ascii_punct（它会让 / 直接上屏、符号全废），
-  # 改由 default.yaml 的 punctuator/half_shape 表控制：所有符号英文半角直出、不进候选，
-  # '/' 直接上屏，符号查找改用 | 前缀（如 |jt |sx |szq 等）。
-  # 这里整表覆盖（与原 schema 一致，避免依赖列表索引）
+  # 中英标点：不用 ascii_punct，由 default.custom.yaml 的 half_shape 表控制：
+  # 所有符号英文半角直出（含 / 和 | 直接上屏），不进候选。
+  # ==================== 符号查找：v 前缀（原 | 前缀体系已整体删除） ====================
+  # v1~v10 → ①~⑩，两条腿互为保险：
+  #   腿1（主路，punct 段）：v 由 speller 进输入串，数字由 recognizer 处理器按
+  #     '^v[0-9]0?$' 全匹配追加进串（alphabet 不含数字，只能靠 pattern 组出）→
+  #     matcher 建 punct 段 → punct_translator 查下方 symbols 表（v1~v10 键）。
+  #     数字规则 '[0-9]0?' 沿用原 |1 手法：v1 菜单里按 0 组出 v10 → ⑩；按其他
+  #     数字则不匹配、落回 selector 正常选词，不会拼出 v12。
+  #   腿2（保险，emoji_lookup 段）：万一 librime 让 affix 剥 v 分段，文末的
+  #     v_symbols 小词库也存了数字编码 → 仍出 ①~⑩。
+  # | 键本身恢复为普通半角标点直接上屏（default.custom.yaml: '|' : '|'）。
   punctuator/symbols:
     __include: symbols_custom:/symbols
-  recognizer/patterns/punct: '^\|([0-9]0?|[A-Za-z]+)$'
+  recognizer/patterns/punct: '^v[0-9]0?$'
   switches:
     - name: ascii_mode
       reset: 0                 # 载入方案时强制回到「中文」，保证永远中文
@@ -61,6 +69,12 @@ patch:
     - derive/ing$/in/
     # - derive/^f/h/                   # 必须加 ^，否则会替换掉音节中间的 h（如 zhi → zfi）
     # - derive/^h/f/
+    # 删除「诶 eh」这个非标准音节（来自 41448 词库的「诶	eh	0」条目）。
+    # eh 是合法音节时，qieh 会被优先切成 qi+eh 两个完整音节 →「骑诶」，
+    # 而不是想要的 qie+h（全拼+简拼）→「切换」。
+    # 同款手法：原生 schema 已有 erase/^m$/、erase/^n$/、erase/^ng$/ 为简拼腾位的先例。
+    # 诶 不丢失：仍可用 ei 打出（8105 词库「诶	ei	5305」）。
+    - erase/^eh$/
 
   # 取消「分号 = 选第 2 个候选」。
   # 原实现：rime_frost.schema.yaml 的 key_binder/bindings 里有一条 {accept: semicolon, send: 2}。
@@ -87,3 +101,88 @@ patch:
   # 注意：若以后改 radical_lookup/prefix，这里要同步改。
   radical_lookup/preedit_format:
     - "xform/^/u/"
+
+  # ==================== v+拼音 → emoji/符号专属模式 ====================
+  # 现状：emoji、符号（↑ ⬆️）来自 simplifier@emoji（opencc/emoji.txt 把「笑→😄😊」
+  # 「上→⬆️↑」附加到正常候选后面），平时大量占候选框；不想被打扰只能 Ctrl+` 关
+  # emoji 开关，想用又得切回来。
+  # 方案（仿 u 拆字反查，全部改动走 custom）：
+  #   1. emoji 转换用 tags 限定在专属段（emoji_lookup）→ 正常输入（abc 段）永远干净，
+  #      emoji 开关保持「😄 开」即可，再也不用 Ctrl+` 切来切去；
+  #   2. v+拼音 用 affix_segmentor 建专属段，script_translator 用主词库把剩余拼音
+  #      翻译成文字候选（vxiao →「笑」…），emoji simplifier 再转换附加出 😄 😊；
+  #   3. lua filter（custom_v_emoji_filter.lua）删掉该段残留的文字候选，只剩纯符号。
+  # 效果：vxiao → 😄 😊；vshang → ⬆️ ↑；vcheng → ✖️ ×；vchu → ➗ ÷；v1~v10 → ①~⑩；
+  #      平时输入 xiao / shang 不再出现任何 emoji。
+  # 副作用：
+  #   a) v+字母的英文单词（view、vip、van 等）被本模式拦截（melt_eng 不翻译该段），
+  #      夹英文请切 ASCII 模式，或反馈后换触发规则；
+  #   b) v+单字母也进 emoji 模式（防止删除时 v 前缀残留导致显示 bug）；
+  #      带调韵母（ā á ǎ à 等）原由 |a 提供，| 体系删除后本机不再提供；
+  #   c) 计算器改为只认大写 V（V1+2），小写 v 算式不可用（见下方 calculator 收窄说明）；
+  #   d) u 拆字反查段也不再附加 emoji（反查结果更纯）。
+
+  # v 开头 + 至少一个字母 → emoji 模式段。
+  # 曾经用 ^v[a-z]{2,}$（v+≥2 字母）想保住 v+单字母，结果产生 bug：打 vbh（不好→👎）
+  # 再删掉 h 时，旧的 phony 前缀段 v 已被确认而残留，剩余 b 不满足 ≥2 字母、
+  # emoji 段重建不了，b 走了 abc 段；librime 的 preedit 跳过 phony 段 →
+  # 输入框只显示「b」，v 凭空消失，再输入/删除才恢复。
+  # 放宽到 1 个字母后 vb 也能建 emoji 段，preedit_format 补回 v → 正常显示 vb。
+  # v+单字母没有要保的功能：带调韵母原走 symbols_custom 的 |a（| 体系已删除），
+  # 词典里也查无 va 编码的韵母条目，v_filter 时代注释里的 va→ā 在本机词库并不存在。
+  # ⚠️ 必须同时收窄 calculator（见下一条）：matcher 是「单命中即返回」，原
+  # pattern ^[Vv].*$ 会先匹配 vxiao 把 tag 抢成 calculator，emoji 段建不起来，
+  # vxiao 整串被塞给计算器解析（日志里 LuaTranslation::Next error:
+  # bad argument #5 就是它炸的）→ 候选全空。
+  recognizer/patterns/emoji_lookup: "^v[a-z]+$"
+
+  # 计算器让出小写 v，只保留大写 V 触发（V1+2、Vsin(3.14) 照常）。
+  # 代价：小写算式 v1+2 从此不可用，需要计算器时按住 Shift。
+  # （上游 README 本来写的就是「计算器 V」大写；收窄后 v 开头字母串不再
+  # 被计算器吞掉，顺带修掉了 calc_translator 对 v+字母串报错的既有 bug）
+  recognizer/patterns/calculator: "^V.*$"
+
+  # 引擎接线（v 段独占，插哪儿都不与现有组件冲突）
+  engine/segmentors/@before 4: affix_segmentor@emoji_lookup
+  engine/translators/@before 0: script_translator@emoji_lookup
+  engine/filters/+:
+    - lua_filter@*custom_v_emoji_filter
+
+  # v+拼音 段的翻译配置（仿五笔方案的 pinyin_lookup）
+  emoji_lookup:
+    tag: emoji_lookup
+    dictionary: rime_frost        # 用主词库：vxiao 翻出「笑」，再由 emoji 转换生成 😄😊
+    enable_user_dict: false
+    enable_sentence: false
+    enable_completion: true
+    prefix: "v"
+    tips: "〔表情〕"
+    comment_format:
+      - erase/^.*$//              # 清空注释（文字候选反正会被 filter 删，emoji 候选本来无注释）
+    preedit_format:
+      - "xform/^/v/"              # preedit 补回前缀 v（同 u 反查的修复手法）
+
+  # emoji 转换只作用于 v 段：正常打字（abc 段）、u 反查段不再被 emoji/符号附加候选占位
+  emoji/tags: [ emoji_lookup ]
+
+  # ==================== v+拼音 → × ÷（乘/除）====================
+  # emoji.txt 里「乘 → ✖️」「除 → ➗」是 emoji 体，没有数学符号 × ÷，
+  # 上游 emoji.txt 不能直改 → 自建小词库 custom_v_symbols.txt
+  # （词<Tab>码<Tab>权重，个人文件带 custom 前缀）。
+  # table_translator 挂 emoji_lookup tag = 本方案 radical_lookup
+  # （table_translator@tag）同款手法：只翻译 v 段，正常打字（abc 段）不受影响。
+  # 同时兜底 v1~v10 的圈数字（affix 剥 v 后按数字编码查 ①~⑩，与上方
+  # punct 段那条腿互为保险）；preedit_format 补回 v，防 phony 前缀段显示丢失。
+  engine/translators/@before 1: table_translator@v_symbols
+  v_symbols:
+    dictionary: ""
+    user_dict: custom_v_symbols
+    db_class: stabledb
+    tag: emoji_lookup
+    enable_completion: false
+    enable_sentence: false
+    initial_quality: 99
+    comment_format:
+      - erase/^.*$//            # × ÷ 不带注释，界面干净
+    preedit_format:
+      - "xform/^/v/"            # affix 路径生效时，preedit 补回前缀 v

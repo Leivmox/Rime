@@ -25,10 +25,10 @@ patch:
   # 与拼音方案 rime_frost.custom.yaml 里的 punctuator/digit_separators: "" 一致。
   punctuator/digit_separators: ""
 
-  # 符号查找：/ 前缀改为 | 前缀（与拼音方案一致）
-  punctuator/symbols:
-    __include: symbols_custom:/symbols
-  recognizer/patterns/punct: '^\|([0-9]0?|[A-Za-z]+)$'
+  # 符号查找（原 /、| 前缀）已删除：v 是五笔码元（一级简码），
+  # 若给 v+数字配 pattern，recognizer 会把 v 码选词的数字键抢走进输入串
+  # （v+1 变圈数字、选不了第 1 候选），故五笔侧不搬 v 符号；
+  # 需要 ①~⑩、×÷、emoji 时按 F14 切回拼音方案用 v 模式。
 
   # F14 切回白霜拼音（整表覆盖：保留原有分号选第2候选）
   key_binder/bindings:

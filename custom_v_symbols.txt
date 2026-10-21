@@ -1,0 +1,19 @@
+# Rime table
+# coding: utf-8
+#
+# v+拼音 模式专属符号（个人文件：文件名带 custom 前缀）
+# 仅 rime_frost.custom.yaml 的 v_symbols（table_translator，tag: emoji_lookup）
+# 读取本文件：v 段候选，正常打字（abc 段）不会出现。
+# 每行一条，以 Tab 分隔：符号<Tab>编码<Tab>权重；注释只写在文件开头，此行之后不要写注释
+×	cheng	99
+÷	chu	99
+①	1	99
+②	2	99
+③	3	99
+④	4	99
+⑤	5	99
+⑥	6	99
+⑦	7	99
+⑧	8	99
+⑨	9	99
+⑩	10	99
