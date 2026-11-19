@@ -1,0 +1,22 @@
+# Rime's symbols
+# coding: utf-8
+#
+# v 前缀符号表（原 | 前缀体系已按需求整体删除，仅保留圈数字）：
+# v1~v10 → ①~⑩，由 rime_frost.custom.yaml 的
+# recognizer/patterns/punct（^v[0-9]0?$）命中 punct 段后查本表。
+# 五笔方案不再引用本表：v 是五笔码元，v+数字段会抢走选词数字键，故五笔侧无 v 符号。
+# 同一份数字编码兜底还有 custom_v_symbols.txt（emoji_lookup 段那条腿）。
+#
+# 个人文件：文件名带 custom 关键字
+
+symbols:
+  'v1': [ ① ]
+  'v2': [ ② ]
+  'v3': [ ③ ]
+  'v4': [ ④ ]
+  'v5': [ ⑤ ]
+  'v6': [ ⑥ ]
+  'v7': [ ⑦ ]
+  'v8': [ ⑧ ]
+  'v9': [ ⑨ ]
+  'v10': [ ⑩ ]

@@ -1,0 +1,21 @@
+customization:
+  distribution_code_name: Weasel
+  distribution_version: 0.17.4
+  generator: "Weasel::UIStyleSettings"
+  modified_time: "Fri Nov 20 02:55:52 2026"
+  rime_version: 1.13.1
+patch:
+  "app_options/Code - Insiders.exe":
+    inline_preedit: false
+  "app_options/Code.exe":
+    inline_preedit: false
+  "app_options/firefox.exe":
+    inline_preedit: false
+  "style/color_scheme": steam
+  "style/font_point": 13
+  "style/horizontal": true
+  "style/inline_preedit": false
+  "style/layout/border_width": 1
+  "style/layout/margin_x": 5
+  "style/layout/margin_y": 5
+  "style/layout/spacing": 5
